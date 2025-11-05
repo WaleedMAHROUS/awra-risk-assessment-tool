@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aviation Wildlife Risk Assessment (AWRA) Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <header class="main-header">
+            <h1>Aviation Wildlife Risk Assessment (AWRA) Tool</h1>
+            <p>ICAO-Compliant Wildlife Hazard Management</p>
+        </header>
+
+
+        <nav class="tab-nav">
+            <button class="tab-link active" data-tab="about-page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.064.293.006.399.287.47l.45.083.082.38-.229.287a.5.5 0 0 1-.732-.01l-.229-.287-.082-.38-.45-.083a.5.5 0 0 1-.288-.469l.738-3.468c.064-.293-.006-.399-.287-.47l-.45-.083-.082-.38.229-.287a.5.5 0 0 1 .732.01zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>
+                About
+            </button>
+            <button class="tab-link" data-tab="workspace-page">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M2.5 0A2.5 2.5 0 0 0 0 2.5v11A2.5 2.5 0 0 0 2.5 16h11a2.5 2.5 0 0 0 2.5-2.5v-11A2.5 2.5 0 0 0 13.5 0h-11zM2.5 1A1.5 1.5 0 0 1 1 2.5v11A1.5 1.5 0 0 1 2.5 15h11A1.5 1.5 0 0 1 15 13.5v-11A1.5 1.5 0 0 1 13.5 1h-11z"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/></svg>
+                Workspace
+            </button>
+        </nav>
+
+        <main>
+            <div id="about-page" class="tab-content active">
+                <div class="card about-card">
+                    <h2>About the Aviation Wildlife Risk Assessment (AWRA) Tool</h2>
+                    <p>Welcome to the Aviation Wildlife Risk Assessment (AWRA) Tool.</p>
+                    <p>This professional tool empowers airport operators, wildlife management teams, and aviation safety experts to conduct standardized, ICAO-compliant wildlife hazard assessments.</p>
+                    <p>By leveraging an extensive internal database (powered by global bird datasets like AVONET and eBird), this tool instantly calculates risk. It processes your inputs against the <strong>ICAO Doc 9137, Part 3, Chapter 3</strong> methodology (Tables 3-4, 3-5, 3-6, and the 3-7 risk matrix).</p>
+                    <p>This allows you to generate auditable, data-driven risk values (Severity and Likelihood) for any species. Make informed decisions, enhance your Wildlife Hazard Management Programme (WHMP), and contribute to safer skies for everyone.</p>
+
+                    <h3>Methodology</h3>
+                    <p>This tool implements the risk assessment model described in <strong>ICAO Doc 9137, Part 3, Chapter 3</strong>.</p>
+                    <ul>
+                        <li><strong>Severity</strong> is calculated based on a hybrid formula using species <strong>Body Mass</strong> (ICAO Table 3-4) and <strong>Flocking Behavior</strong> (ICAO Table 3-5), which produces a final Severity Category (ICAO Table 3-6).</li>
+                        <li><strong>Likelihood</strong> is based on the qualitative assessment of species <strong>Presence</strong> (ICAO Table 3-1).</li>
+                        <li><strong>Risk</strong> is determined by plotting these two categories on the 5x5 Risk Matrix (ICAO Table 3-7).</li>
+                        <li>Baseline species data is sourced from <strong>global bird datasets (AVONET/eBird)</strong>, mapped to the ICAO mass categories.</li>
+                    </ul>
+
+                    <h3>Contact and Access</h3>
+                    <p>Created by Waleed MAHROUS, Stop BIRDSTRIKE.</p>
+                    <ul class="contact-links">
+                        <li>Communicate directly with the creator: <a href="https://waleedmahrous.com/#contact-waleed-mahrous" target="_blank" rel="noopener noreferrer">Contact Waleed Mahrous</a></li>
+                        <li>Book a consultation: <a href="https://waleedmahrous.com/book-an-appointment-for-a-wildlife-hazard-management-consultation" target="_blank" rel="noopener noreferrer">Book a Meeting</a></li>
+                        <li>Try the main platform: <a href="https://waleedmahrous.com/aviation-wildlife-hazards-management-and-risk-assessment-tool" target="_blank" rel="noopener noreferrer">Aviation Wildlife Risk Intelligence Platform</a></li>
+                    </ul>
+                    
+                    <button class="start-btn" id="start-app-btn">Start Using the App</button>
+                </div>
+            </div>
+
+            <div id="workspace-page" class="tab-content hidden">
+                <div class="main-layout">
+                    <div class="main-column-left">
+                        <section class="card">
+                            <h2>Project Management</h2>
+                            <div class="form-group">
+                                <label for="project-name">Load or Create Project</label>
+                                <div class="input-group">
+                                    <input type="text" id="project-name" placeholder="Enter project name...">
+                                    <button id="load-project-btn" title="Load Project">Load</button>
+                                </div>
+                            </div>
+                            
+                            <div id="existing-projects-section" class="hidden">
+                                <h3>Existing Projects (Check to Merge)</h3>
+                                <ul id="project-list" class="project-list"></ul>
+                                <button id="merge-export-btn" class="btn-merge">Export Merged Log</button> 
+                            </div>
+                            
+                            <div class="bulk-assess-section hidden" id="bulk-upload-section">
+                                <h4>Bulk Assess Multiple Species</h4>
+                                <div class="form-group upload-group">
+                                    <label for="csv-upload-input" class="custom-file-upload">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                          <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                                          <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                                        </svg>
+                                        <span>Choose a .CSV file</span>
+                                        <small>Upload a .CSV to assess many species at once.</small>
+                                    </label>
+                                    <input type="file" id="csv-upload-input" class="form-control" accept=".csv">
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="card hidden" id="bulk-processing-section">
+                            <h2 id="bulk-project-display"></h2>
+                            <div class="table-container">
+                                <table id="bulk-assessment-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Wildlife Species</th>
+                                            <th>Likelihood (Presence)</th>
+                                            <th>Flocking Behavior</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="bulk-buttons">
+                                <button id="bulk-submit-btn" class="submit-btn">Process and Log All Entries</button>
+                                <button id="bulk-cancel-btn" class="btn-cancel">Cancel</button>
+                            </div>
+                            <div id="bulk-loading-spinner" class="spinner hidden"></div>
+                        </section>
+
+                        <section class="card assessment-form hidden" id="assessment-section">
+                            <h2 id="current-project-display"></h2>
+                            <div class="toggle-switch">
+                                <span id="manual-label">Manual Mode</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="mode-toggle" checked>
+                                    <span class="slider"></span>
+                                </label>
+                                <span id="auto-label">Automated Mode</span>
+                            </div>
+                            <form id="risk-form">
+                                <div class="form-group">
+                                    <label for="species-name">Species Name (Common or Scientific)</label>
+                                    <input type="text" id="species-name" required list="species-datalist" placeholder="e.g., Golden Eagle or Aquila chrysaetos">
+                                    <datalist id="species-datalist"></datalist>
+                                </div>
+                                <fieldset id="auto-mode-fields">
+                                    <legend>Automated Mode</legend>
+                                    <div class="form-group">
+                                        <label for="auto-likelihood">Likelihood (Presence)</label>
+                                        <select id="auto-likelihood" class="form-control">
+                                            <option value="Occasional">Occasional (Very Low)</option>
+                                            <option value="Few">Few (Low)</option>
+                                            <option value="Some" selected>Some (Moderate)</option>
+                                            <option value="Most">Most (High)</option>
+                                            <option value="Permanent">Permanent (Very High)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="auto-flocking">Flocking Behavior</label>
+                                        <select id="auto-flocking" class="form-control">
+                                            <option value="Solitary">Solitary / Spaced (x1)</option>
+                                            <option value="Loose">Loose Flocks (x2)</option>
+                                            <option value="Tight">Tight Flocks (x4)</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <fieldset id="manual-mode-fields" class="hidden">
+                                    <legend>Manual Mode</legend>
+                                    <div class="form-group">
+                                        <label for="manual-severity">Severity</label>
+                                        <select id="manual-severity" class="form-control">
+                                            <option value="Very Low">Very Low</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Moderate" selected>Moderate</option>
+                                            <option value="High">High</option>
+                                            <option value="Very High">Very High</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="manual-likelihood">Likelihood</label>
+                                        <select id="manual-likelihood" class="form-control">
+                                            <option value="Very Low">Very Low</option>
+                                            <option value="Low">Low</option>
+                                            <option value="Moderate" selected>Moderate</option>
+                                            <option value="High">High</option>
+                                            <option value="Very High">Very High</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+                                <button type="submit" id="submit-btn" class="submit-btn">Calculate & Log Risk</button>
+                                <div id="loading-spinner" class="spinner hidden"></div>
+                            </form>
+                            <div id="notification-bar" class="notification hidden"></div>
+                        </section>
+                    </div>
+
+                    <div class="main-column-right">
+                        <section id="results-display" class="hidden">
+                            <div id="results-content" class="risk-card"></div>
+                        </section>
+
+                        <section class="card project-log hidden" id="log-section">
+                            <div class="log-header">
+                                <h2 id="current-log-project-display">Project Log</h2>
+                                <div class="log-buttons">
+                                    <button id="export-csv-btn" class="log-btn-export" title="Export this log">Export CSV</button>
+                                    <button id="clear-project-btn" class="log-btn-clear" title="Clear this project's data">Clear Project</button>
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead id="log-table-header">
+                                        <tr>
+                                            <th>Date / Time</th>
+                                            <th>Common Name</th>
+                                            <th>Scientific Name</th>
+                                            <th>Severity</th>
+                                            <th>Likelihood</th>
+                                            <th>Risk</th>
+                                            <th>Data Source</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="log-table-body">
+                                        </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="justification-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+            <h3>Assessment Rationale (ICAO-Compliant)</h3>
+            <pre id="justification-modal-content"></pre>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
