@@ -757,3 +757,64 @@ td .risk-level {
     .action-btn { padding: 2px; width: 24px; height: 24px; }
     .tab-link { font-size: 0.8rem; gap: 4px; padding: 8px 5px; }
 }
+/* --- Added Tooltip Styles --- */
+.h4-with-tooltip {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between heading and icon */
+    margin-bottom: 10px; /* Replaces the h4's original margin-bottom */
+}
+
+.h4-with-tooltip h4 {
+    margin-bottom: 0; /* Remove default margin */
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-icon {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-light);
+    background-color: var(--status-missing);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: help;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    width: 300px;
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    text-align: left;
+    border-radius: 8px;
+    padding: 10px 15px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%; /* Position above the icon */
+    left: 50%;
+    margin-left: -150px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.tooltip-text code {
+    background: #495057;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.tooltip-container:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
